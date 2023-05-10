@@ -7,6 +7,9 @@
             if(digits == "")
                 return 0;
 
+            if (digits.Length == 1)
+                return -1;
+
             throw new ArgumentException();
         }
     }
