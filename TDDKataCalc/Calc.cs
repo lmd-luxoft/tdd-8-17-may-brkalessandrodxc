@@ -4,14 +4,17 @@
     {
         public int Add(string digits)
         {
-            if(digits == null)
+            if (digits == null)
                 return -1;
 
-            if(digits == "")
+            if (digits == "")
                 return 0;
 
             if (digits.Length == 1)
                 return Int16.Parse(digits);
+
+            if(digits.Split(',').Length == 1)
+                return -1;
 
             var numbers = digits.Split(',');
             return Int16.Parse(numbers[0]) + Int16.Parse((numbers[1]));
