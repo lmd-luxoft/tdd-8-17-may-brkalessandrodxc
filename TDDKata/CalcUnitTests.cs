@@ -4,12 +4,13 @@ namespace TDDKata
 {
     public class CalcUnitTests
     {
-        [Fact]
-        public void EmptyStringShouldReturnZero()
+        [Theory]
+        [InlineData("", 0)]
+        [InlineData("1", 1)]
+        [InlineData("1,3", 4)]
+        public void UpToTwoDigitsShouldReturnResult(string input, int expected)
         {
             // Arrange
-            string input = "";
-            int expected = 0;
             Calc calc = new();
 
             // Act
@@ -19,12 +20,12 @@ namespace TDDKata
             Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void OneDigitShouldThrowError()
+        [Theory]
+        [InlineData(null, -1)]
+        [InlineData("test", -1)]
+        public void InvalidInputShouldThrowError(string input, int expected)
         {
             // Arrange
-            string input = "1";
-            int expected = -1;
             Calc calc = new();
 
             // Act
@@ -34,19 +35,5 @@ namespace TDDKata
             Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void TwoDigitsShouldReturnResult()
-        {
-            // Arrange
-            string input = "1,3";
-            int expected = 4;
-            Calc calc = new();
-
-            // Act
-            var actual = calc.Add(input);
-
-            // Assert
-            Assert.Equal(expected, actual);
-        }
     }
 }
