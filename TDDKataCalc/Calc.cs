@@ -4,6 +4,9 @@
     {
         public int Add(string digits)
         {
+            if(digits == null)
+                return -1;
+
             if(digits == "")
                 return 0;
 
