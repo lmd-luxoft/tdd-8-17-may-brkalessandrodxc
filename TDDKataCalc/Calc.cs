@@ -1,4 +1,6 @@
-﻿namespace TDDKataCalc
+﻿using Microsoft.VisualBasic;
+
+namespace TDDKataCalc
 {
     public class Calc
     {
@@ -13,11 +15,12 @@
             if (digits.Length == 1)
                 return Int16.Parse(digits);
 
-            if(digits.Split(',').Length == 1)
+            char[] separators = new char[] { ',', '\n' };
+            var numbers = digits.Split(separators);
+            if (numbers.Length == 1)
                 return -1;
 
-            var numbers = digits.Split(',');
-            return Int16.Parse(numbers[0]) + Int16.Parse((numbers[1]));
+            return numbers.Aggregate(0, (count, val) => count + int.Parse(val));
         }
     }
 }
