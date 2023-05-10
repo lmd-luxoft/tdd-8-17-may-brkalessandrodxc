@@ -4,7 +4,10 @@
     {
         public int Add(string digits)
         {
-            throw new NotImplementedException();
+            if(digits == "")
+                return 0;
+
+            throw new ArgumentException();
         }
     }
 }
