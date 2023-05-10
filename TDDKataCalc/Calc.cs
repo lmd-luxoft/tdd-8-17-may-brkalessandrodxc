@@ -13,11 +13,12 @@ namespace TDDKataCalc
                 return 0;
 
             if (digits.Length == 1)
-                return Int16.Parse(digits);
+                return int.Parse(digits);
 
             char[] separators = new char[] { ',', '\n' };
             var numbers = digits.Split(separators);
-            if (numbers.Length == 1)
+
+            if (numbers.Length == 1 || numbers.Contains(""))
                 return -1;
 
             return numbers.Aggregate(0, (count, val) => count + int.Parse(val));
