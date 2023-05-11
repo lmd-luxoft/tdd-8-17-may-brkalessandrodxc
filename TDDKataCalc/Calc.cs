@@ -18,8 +18,14 @@ namespace TDDKataCalc
             char[] separators = new char[] { ',', '\n' };
             var numbers = digits.Split(separators);
 
-            if (numbers.Length == 1 || numbers.Contains(""))
+            if (numbers.Contains(""))
                 return -1;
+
+            foreach (var number in numbers)
+            {
+                if (!int.TryParse(number, System.Globalization.NumberStyles.None, null, out _))
+                    return -1;
+            }
 
             return numbers.Aggregate(0, (count, val) => count + int.Parse(val));
         }
