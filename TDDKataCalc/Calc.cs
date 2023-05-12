@@ -15,8 +15,19 @@ namespace TDDKataCalc
             if (digits.Length == 1)
                 return int.Parse(digits);
 
-            char[] separators = new char[] { ',', '\n' };
-            var numbers = digits.Split(separators);
+            var numbers = new string[2];
+            if(digits.StartsWith("//"))
+            {
+                digits = digits.TrimStart('/');
+                var parts = digits.Split('\n');
+                var separators = parts[0];
+                numbers = parts[1].Split(separators);
+            }
+            else
+            {
+                char[] separators = new char[] { ',', '\n' };
+                numbers = digits.Split(separators);
+            }
 
             if (numbers.Contains(""))
                 return -1;
